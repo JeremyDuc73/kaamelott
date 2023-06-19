@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <h1 class="mt-4">Voici le top 3 des citations :</h1>
+    {% for quote in topquotes %}
+        <div class="border border-black m-2 p-2">
+            <h4>{{ quote.0.content }}</h4>
+            <p>{{ quote.0.character }}</p>
+            {% if app.user %}
+                <form action="{{ path('app_savequote') }}" method="post">
+                    <input type="hidden" value="{{ quote.0.content }}" name="content">
+                    <input type="hidden" value="{{ quote.0.character }}" name="character">
+                    <button type="submit" class="btn btn-success">ENREGISTRER</button>
+                </form>
+            {% else %}
+                <div class="d-flex align-items-center">
+                    <h5 class="me-4 mb-0">Pour enregistrer la citation : </h5>
+                    <a href="{{ path('app_login') }}" class="btn btn-primary">SE CONNECTER</a>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}

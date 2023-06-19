@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<h1>PANEL ADMIN</h1>
+    <a href="{{ path('app_admin_managequotes') }}" class="btn btn-info">GERER LES CITATIONS</a>
+    <a href="{{ path('app_admin_manageusers') }}" class="btn btn-info">GERER LES UTILISATEURS</a>
+{% endblock %}

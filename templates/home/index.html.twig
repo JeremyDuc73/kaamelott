@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <div class="d-flex mt-4 mb-3 align-items-center">
+        <h1 class="me-4 mb-0">Voici une citation :</h1>
+        <a href="{{ path('app_home') }}" class="btn btn-success">ACTUALISER</a>
+    </div>
+    <p>{{ data.citation.citation }}</p>
+    <p>Par : {{ data.citation.infos.personnage }}</p>
+    {% if app.user %}
+        <form action="{{ path('app_savequote') }}" method="post">
+            <input type="hidden" value="{{ data.citation.citation }}" name="content">
+            <input type="hidden" value="{{ data.citation.infos.personnage }}" name="character">
+            <button type="submit" class="btn btn-success">ENREGISTRER</button>
+        </form>
+    {% else %}
+        <div class="d-flex align-items-center">
+            <h5 class="me-4 mb-0">Pour enregistrer la citation : </h5>
+            <a href="{{ path('app_login') }}" class="btn btn-primary">SE CONNECTER</a>
+        </div>
+    {% endif %}
+{% endblock %}

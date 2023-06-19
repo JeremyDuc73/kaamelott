@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+    <h1 class="mt-4 mb-3">Liste des utilisateurs</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom d'utilisateur</th>
+            <th>Rôles</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{% if "ROLE_ADMIN" in user.roles %}
+                        est admin
+                    {% else %}
+                        n'est pas admin
+                    {% endif %}
+                </td>
+                <td>
+
+                    {% if "ROLE_ADMIN" in user.roles %}
+                        <a href="{{ path("app_user_demote",{id:user.id}) }}" class="btn btn-warning">RETROGRADER</a>
+                    {% else %}
+                        <a href="{{ path("app_user_promote",{id:user.id}) }}" class="btn btn-success">PROMOUVOIR</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun résultat</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

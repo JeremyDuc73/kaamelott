@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+    <h1 class="mt-4 mb-3">Liste des citations</h1>
+    {% for quote in quotes %}
+        <div class="border border-black m-2 p-2">
+            <p>{{ quote.content }}</p>
+            <a href="{{ path('app_admin_destroyquote', {id:quote.id}) }}" class="btn btn-danger">SUPPRIMER DEFINITIVEMENT</a>
+        </div>
+    {% endfor %}
+{% endblock %}

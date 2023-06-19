@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello QuoteController!{% endblock %}
+
+{% block body %}
+{% for quote in app.user.quotes %}
+    <div class="border border-black m-2 p-2">
+        <p>{{ quote.content }}</p>
+        <h6>par : {{ quote.character }}</h6>
+        <a href="{{ path('app_deletequote', {quoteId:quote.id}) }}" class="btn btn-danger">SUPPRIMER</a>
+    </div>
+
+    {% endfor %}
+{% endblock %}
