@@ -40,11 +40,10 @@ class HomeController extends AbstractController
     }
 
     #[Route('/api/quotes', name: 'app_api_quotes', methods: ['GET'])]
-    public function apiQuotes(): Response
+    public function apiQuotes(TopQuotesService $topQuotesService): Response
     {
-        $user = $this->getUser();
-        $userQuotes = $user->getQuotes();
-        return $this->json($userQuotes, 200, [], ['groups'=>'quote:read']);
+        $topQuotes = $topQuotesService->getTopQuotes();
+        return $this->json($topQuotes, 200, [], ['groups'=>'quote:read']);
     }
 
 }
